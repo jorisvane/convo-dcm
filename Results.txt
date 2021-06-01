@@ -1,0 +1,14 @@
+Model 1 : ResNet50 
+batch size = 10 
+learning rate = 0.0001 
+num_epochs = 10
+Epoch 1 | Training Loss: 0.5623360109329224 | Validation Loss: 0.5384637451171875 | Training Accuracy: 72.99999237060547 | Validation Accuracy: 83.0
+Epoch 2 | Training Loss: 0.532799301147461 | Validation Loss: 0.5418440294265747 | Training Accuracy: 82.0 | Validation Accuracy: 83.0
+Epoch 3 | Training Loss: 0.5033728218078614 | Validation Loss: 0.5465597152709961 | Training Accuracy: 88.0 | Validation Accuracy: 81.0
+Epoch 4 | Training Loss: 0.47513274669647215 | Validation Loss: 0.5506929636001587 | Training Accuracy: 93.0 | Validation Accuracy: 81.0
+Epoch 5 | Training Loss: 0.4476980352401733 | Validation Loss: 0.5573928785324097 | Training Accuracy: 97.0 | Validation Accuracy: 81.0
+Epoch 6 | Training Loss: 0.42142005443573 | Validation Loss: 0.5633298063278198 | Training Accuracy: 97.0 | Validation Accuracy: 76.0
+Epoch 7 | Training Loss: 0.39639303922653196 | Validation Loss: 0.5708819675445557 | Training Accuracy: 97.99999237060547 | Validation Accuracy: 74.0
+Epoch 8 | Training Loss: 0.3710704517364502 | Validation Loss: 0.5775018787384033 | Training Accuracy: 98.99999237060547 | Validation Accuracy: 70.0
+Epoch 9 | Training Loss: 0.34913684606552126 | Validation Loss: 0.5872346115112305 | Training Accuracy: 98.99999237060547 | Validation Accuracy: 69.0
+Epoch 10 | Training Loss: 0.3251377630233765 | Validation Loss: 0.5932277345657349 | Training Accuracy: 98.99999237060547 | Validation Accuracy: 69.0
