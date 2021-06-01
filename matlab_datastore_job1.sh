@@ -9,8 +9,10 @@
 
 
 
-module use /opt/insy/modulefiles
-module load matlab/R2019b
-module load cuda/10.0 cudnn/10.0-7.4.2.24
+# module use /opt/insy/modulefiles
+# module load matlab/R2019b
+# module load cuda/10.0 cudnn/10.0-7.4.2.24
 
-srun matlab < CNDCM_v2.m
+# srun matlab < CNDCM_v2.m
+
+python3 train_cluster.py
