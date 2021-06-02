@@ -37,19 +37,19 @@ class NN(nn.Module):
     
     def forward_once(self, x, y):
 
-        print(x.size())
+        # print(x.size())
 
         x = self.pretrained(x)
 
-        print(x.size())
+        # print(x.size())
+
+        # squeeze to change [batch size, 1024, 1, 1] to [batch size, 1024]
         
         x = torch.squeeze(x)
         
-        print(x.size())
+        # print(x.size())
 
         x = self.MLP(x)
-
-        print(x.size())
 
         y = torch.unsqueeze(y,1)
         

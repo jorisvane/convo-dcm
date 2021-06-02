@@ -97,7 +97,7 @@ optimizer = optim.Adam(model.parameters(), lr=learning_rate)
 #     return acc
 
 
-file = open("Results.txt", "w")
+file = open("Results_train.txt", "w")
 
 ######################
 

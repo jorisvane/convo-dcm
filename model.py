@@ -40,6 +40,8 @@ class NN(nn.Module):
 
         #print(x.size())
 
+        # squeeze to change [batch size, 2048, 1, 1] to [batch size, 2048]
+
         x = torch.squeeze(x)
 
         #print(x.size())
