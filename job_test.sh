@@ -15,4 +15,4 @@ module load miniconda/3.8
 module load cuda/11.1
 module load cudnn/11.1-8.0.5.39
 
-srun miniconda < cluster_test.py
+srun conda < cluster_test.py
