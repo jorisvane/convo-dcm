@@ -22,9 +22,9 @@ cwd = os.getcwd()
 device = torch.device('cuda' if torch.cuda.is_available() else 'cpu')
 
 # Hyperparameters
-batch_size = 10
+batch_size = 60
 learning_rate = 0.0001
-num_epochs = 10
+num_epochs = 100
 
 #Load and transform Data
 
@@ -46,7 +46,7 @@ my_transforms = transforms.Compose([
 #########################################################
 
 
-dataset = ImageChoiceDataset(csv_file = 'C:/Users/joris/Desktop/BEP PYTHON/dataset.csv', root_dir = '/tudelft.net/staff-umbrella/CNN4DCM/images', transform = my_transforms)
+dataset = ImageChoiceDataset(csv_file = 'dataset.csv', root_dir = '/tudelft.net/staff-umbrella/CNN4DCM/images', transform = my_transforms)
 
 # Test image plot
 # plt.imshow(dataset[0][0].permute(1, 2, 0))
@@ -56,7 +56,7 @@ dataset = ImageChoiceDataset(csv_file = 'C:/Users/joris/Desktop/BEP PYTHON/datas
 
 # 45798, 9814, 9813
 
-train_set, test_set, val_set = torch.utils.data.random_split(dataset, [100, 65225, 100])
+train_set, test_set, val_set = torch.utils.data.random_split(dataset, [45798, 9814, 9813])
 
 train_loader = DataLoader(dataset=train_set, batch_size=batch_size, shuffle=True)
 
@@ -105,7 +105,7 @@ file = open("Results.txt", "w")
 
 ######################
 
-file.write('Model 1 : ResNet50 \nbatch size = 10 \nlearning rate = 0.0001 \nnum_epochs = 10\n')
+file.write('Model 1 : ResNet50 \nbatch size = 60 \nlearning rate = 0.0001 \nnum_epochs = 100\n')
 
 training_acc = []
 validation_acc = []
@@ -267,9 +267,9 @@ fig.tight_layout(pad=3.0)
 
 #################################
 
-fig.suptitle('Model 1 | batchsize : 10 | learning rate : 0.0001')
+fig.suptitle('Model ResNet50 | batchsize : 60 | learning rate : 0.0001')
 
-plt.savefig('Results_plot_training.png')
+plt.savefig('Results_plot_training_ResNet50.png')
 
 
 # Loading and evaluating model
