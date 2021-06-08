@@ -21,8 +21,10 @@ class ImageChoiceDataset(Dataset):
         img_path2 = os.path.join(self.root_dir, self.annotations.iloc[index, 2]) # name second images in second column
         
         image1 = io.imread(img_path1)
+        print('image 1 loaded')
         image2 = io.imread(img_path2)
-
+        print('image 2 loaded')
+        
         # image1 = Image.open(img_path1)
         # image2 = Image.open(img_path2)
 
