@@ -14,4 +14,4 @@ module load miniconda/3.8
 module load cuda/11.1
 module load cudnn/11.1-8.0.5.39
 
-python3 test_cluster_old_folder.py $*
+python3 cluster_test.py $*
