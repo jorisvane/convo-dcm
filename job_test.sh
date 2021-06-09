@@ -14,4 +14,4 @@ module use /opt/insy/modulefiles
 module load cuda/11.1
 module load cudnn/11.1-8.0.5.39
 
-python3 cluster_test.py $*
+python3 dataloader_test.py $*
