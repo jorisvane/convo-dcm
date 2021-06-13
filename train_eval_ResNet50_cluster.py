@@ -50,7 +50,7 @@ my_transforms = transforms.Compose([
 #########################################################
 
 
-dataset = ImageChoiceDataset(csv_file = 'dataset.csv', root_dir = '/tudelft.net/staff-umbrella/CNN4DCM/images', transform = my_transforms)
+dataset = ImageChoiceDataset(csv_file = 'dataset.csv', root_dir = '/tudelft.net/staff-umbrella/CNN4DCM/images4AVA/images', transform = my_transforms)
 
 # Test image plot
 # plt.imshow(dataset[0][0].permute(1, 2, 0))

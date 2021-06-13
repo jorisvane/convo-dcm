@@ -33,7 +33,7 @@ my_transforms = transforms.Compose([
 
 ])
 
-dataset = ImageChoiceDataset(csv_file = 'dataset.csv', root_dir = '/tudelft.net/staff-umbrella/CNN4DCM/images', transform = my_transforms)
+dataset = ImageChoiceDataset(csv_file = 'dataset.csv', root_dir = '/tudelft.net/staff-umbrella/CNN4DCM/images4AVA/images', transform = my_transforms)
 
 train_set, test_set, val_set = torch.utils.data.random_split(dataset, [45798, 9814, 9813])
 
