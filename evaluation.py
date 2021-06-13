@@ -15,7 +15,7 @@ import os
 # z_data = [4,6,7,10]
 
 
-def function_eval(x_data,y_data,z_data):
+def function_eval(x_data,y_data,z_data,name):
 
     # x_data = np.array(x_data)
     # y_data = np.array(y_data)
@@ -63,17 +63,17 @@ def function_eval(x_data,y_data,z_data):
                             antialiased = True,
                             edgecolor = 'grey')  
     fig.colorbar(trisurf, ax = ax, shrink = 0.5, aspect = 5)
-    ax.set_title('Model 1 ratio')
+    ax.set_title(name)
     
     # Adding labels
     ax.set_xlabel('delta cost', fontweight ='bold') 
     ax.set_ylabel('delta rating', fontweight ='bold') 
     ax.set_zlabel('probability', fontweight ='bold')
         
+    plt.savefig('Results_plot_eval.png', dpi=300)
+
     # show plot
     plt.show()
-
-    plt.savefig('Results_plot_eval.png')
 
     return ratio, params
 

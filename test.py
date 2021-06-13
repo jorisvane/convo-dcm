@@ -70,7 +70,7 @@ test_loader = DataLoader(dataset=test_set, batch_size=batch_size, shuffle=True)
 
 model = NN(my_pretrained_model=pretrained).to(device)
 
-FILE = cwd + '/model.pth'
+FILE = cwd + '/model1st.pth'
 
 #torch.save(model.state_dict(), FILE)
 
@@ -148,7 +148,9 @@ delta_rating_eval = np.array(delta_rating_eval)
 
 prob_eval = np.array(prob_eval)
 
-ratio, params = function_eval(delta_cost_eval, delta_rating_eval, prob_eval)
+name = 'Model 1 : ResNet50 : ratio'
+
+ratio, params = function_eval(delta_cost_eval, delta_rating_eval, prob_eval, name)
 
 LL = -log_loss(y_label_eval, prob_eval, normalize=False)
 
@@ -156,9 +158,15 @@ cross_entropy = -LL/len(y_label_eval)
 
 rho_square = 1-(LL/(len(y_label_eval)* np.log(0.5)))
 
+file = open("Results_eval.txt", "w")
+
 print(f'Parameters: {params}')
 print(f'Ratio: {ratio}')
 print(f'Log loss: {LL}')
 print(f'Cross entropy: {cross_entropy}')
 print(f'Rho: {rho_square}')
+
+file.write(f'Model 1 : ResNet50 \nbatch size = 10 \nlearning rate = 0.0001 \nnum_epochs = 10\n Parameters: {params} \nRatio: {ratio} \nLog loss: {LL} \nCross entropy: {cross_entropy} \nRho: {rho_square}')
+
+file.close()
 # %%
