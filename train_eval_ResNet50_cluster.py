@@ -20,6 +20,8 @@ import itertools
 import numpy as np
 from sklearn.metrics import log_loss
 
+print('START')
+
 cwd = os.getcwd()
 
 # Set device
@@ -361,3 +363,5 @@ print(f'Rho: {rho_square}')
 file.write(f'Model 1 : ResNet50 \nbatch size = 10 \nlearning rate = 0.0001 \nnum_epochs = 10\n Parameters: {params} \nRatio: {ratio} \nLog loss: {LL} \nCross entropy: {cross_entropy} \nRho: {rho_square}')
 
 file.close()
+
+print('DONE')
