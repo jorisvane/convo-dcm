@@ -30,7 +30,7 @@ device = torch.device('cuda' if torch.cuda.is_available() else 'cpu')
 # Hyperparameters
 batch_size = 10
 learning_rate = 0.0001
-num_epochs = 100
+num_epochs = 10
 
 #Load and transform Data
 
@@ -52,7 +52,7 @@ my_transforms = transforms.Compose([
 #########################################################
 
 
-dataset = ImageChoiceDataset(csv_file = 'dataset_test.csv', root_dir = '/tudelft.net/staff-umbrella/CNN4DCM/images4AVA/images', transform = my_transforms)
+dataset = ImageChoiceDataset(csv_file = 'dataset.csv', root_dir = '/tudelft.net/staff-umbrella/CNN4DCM/images4AVA/images', transform = my_transforms)
 
 # Test image plot
 # plt.imshow(dataset[0][0].permute(1, 2, 0))
@@ -62,7 +62,7 @@ dataset = ImageChoiceDataset(csv_file = 'dataset_test.csv', root_dir = '/tudelft
 
 # 45798, 9814, 9813
 
-train_set, test_set, val_set = torch.utils.data.random_split(dataset, [5, 1, 1])
+train_set, test_set, val_set = torch.utils.data.random_split(dataset, [100, 65225, 100])
 
 train_loader = DataLoader(dataset=train_set, batch_size=batch_size, shuffle=True)
 
@@ -111,7 +111,7 @@ file = open("Results_train_ResNet50_TEST.txt", "w")
 
 ######################
 
-file.write('Model 1 TEST : ResNet50 \nbatch size = 10 \nlearning rate = 0.0001 \nnum_epochs = 100\n')
+file.write('Model 1 TEST : ResNet50 \nbatch size = 10 \nlearning rate = 0.0001 \nnum_epochs = 10\n')
 
 training_acc = []
 validation_acc = []
