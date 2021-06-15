@@ -72,6 +72,8 @@ val_loader = DataLoader(dataset=val_set, batch_size=batch_size, shuffle=True)
 
 test_loader = DataLoader(dataset=test_set, batch_size=batch_size, shuffle=True)
 
+model = NN(my_pretrained_model=pretrained).to(device)
+
 FILE = cwd + '/model1st.pth'
 
 model.load_state_dict(torch.load(FILE))
