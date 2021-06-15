@@ -28,7 +28,7 @@ cwd = os.getcwd()
 device = torch.device('cuda' if torch.cuda.is_available() else 'cpu')
 
 # Hyperparameters
-batch_size = 2
+batch_size = 10
 learning_rate = 0.0001
 num_epochs = 100
 
@@ -111,7 +111,7 @@ file = open("Results_train_ResNet50_TEST.txt", "w")
 
 ######################
 
-file.write('Model 1 TEST : ResNet50 \nbatch size = 2 \nlearning rate = 0.0001 \nnum_epochs = 100\n')
+file.write('Model 1 TEST : ResNet50 \nbatch size = 10 \nlearning rate = 0.0001 \nnum_epochs = 100\n')
 
 training_acc = []
 validation_acc = []
@@ -273,7 +273,7 @@ fig.tight_layout(pad=3.0)
 
 #################################
 
-fig.suptitle('Model 1 ResNet50 TEST | batchsize : 2 | learning rate : 0.0001')
+fig.suptitle('Model 1 ResNet50 TEST | batchsize : 10 | learning rate : 0.0001')
 
 plt.savefig('Results_plot_training_ResNet50_TEST.png')
 
@@ -360,7 +360,7 @@ print(f'Log loss: {LL}')
 print(f'Cross entropy: {cross_entropy}')
 print(f'Rho: {rho_square}')
 
-file.write(f'Model 1 TEST : ResNet50 \nbatch size = 2 \nlearning rate = 0.0001 \nnum_epochs = 10\n Parameters: {params} \nRatio: {ratio} \nLog loss: {LL} \nCross entropy: {cross_entropy} \nRho: {rho_square}')
+file.write(f'Model 1 TEST : ResNet50 \nbatch size = 10 \nlearning rate = 0.0001 \nnum_epochs = 10\n Parameters: {params} \nRatio: {ratio} \nLog loss: {LL} \nCross entropy: {cross_entropy} \nRho: {rho_square}')
 
 file.close()
 
