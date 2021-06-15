@@ -4,7 +4,7 @@
 #SBATCH --ntasks=1
 #SBATCH --cpus-per-task=2
 #SBATCH --mem=12000
-#SBATCH --gres=gpu:2
+#SBATCH --gres=gpu:pascal:2
 
 
 
