@@ -1,6 +1,7 @@
 #!/bin/sh
 #SBATCH --partition=general
-#SBATCH --qos=long
+#SBATCH --qos=infinite
+#SBATCH --time=24:00:00
 #SBATCH --ntasks=1
 #SBATCH --cpus-per-task=2
 #SBATCH --mem=12000
