@@ -28,7 +28,7 @@ cwd = os.getcwd()
 device = torch.device('cuda' if torch.cuda.is_available() else 'cpu')
 
 # Hyperparameters
-batch_size = 60
+batch_size = 2
 learning_rate = 0.0001
 num_epochs = 100
 
@@ -52,7 +52,7 @@ my_transforms = transforms.Compose([
 #########################################################
 
 
-dataset = ImageChoiceDataset(csv_file = 'dataset.csv', root_dir = '/tudelft.net/staff-umbrella/CNN4DCM/images4AVA/images', transform = my_transforms)
+dataset = ImageChoiceDataset(csv_file = 'dataset_test.csv', root_dir = '/tudelft.net/staff-umbrella/CNN4DCM/images4AVA/images', transform = my_transforms)
 
 # Test image plot
 # plt.imshow(dataset[0][0].permute(1, 2, 0))
@@ -62,7 +62,7 @@ dataset = ImageChoiceDataset(csv_file = 'dataset.csv', root_dir = '/tudelft.net/
 
 # 45798, 9814, 9813
 
-train_set, test_set, val_set = torch.utils.data.random_split(dataset, [45798, 9814, 9813])
+train_set, test_set, val_set = torch.utils.data.random_split(dataset, [5, 1, 1])
 
 train_loader = DataLoader(dataset=train_set, batch_size=batch_size, shuffle=True)
 
@@ -79,7 +79,7 @@ model = NN(my_pretrained_model=pretrained).to(device)
 
 ##########################
 
-FILE = cwd + '/model_ResNet50.pth'
+FILE = cwd + '/model_ResNet50_TEST.pth'
 
 torch.save(model.state_dict(), FILE)
 
@@ -103,7 +103,7 @@ optimizer = optim.Adam(model.parameters(), lr=learning_rate)
 #     return acc
 
 
-file = open("Results_train_ResNet50.txt", "w")
+file = open("Results_train_ResNet50_TEST.txt", "w")
 
 ######################
 
@@ -111,7 +111,7 @@ file = open("Results_train_ResNet50.txt", "w")
 
 ######################
 
-file.write('Model 1 : ResNet50 \nbatch size = 60 \nlearning rate = 0.0001 \nnum_epochs = 100\n')
+file.write('Model 1 TEST : ResNet50 \nbatch size = 2 \nlearning rate = 0.0001 \nnum_epochs = 100\n')
 
 training_acc = []
 validation_acc = []
@@ -273,9 +273,9 @@ fig.tight_layout(pad=3.0)
 
 #################################
 
-fig.suptitle('Model 1 ResNet50 | batchsize : 60 | learning rate : 0.0001')
+fig.suptitle('Model 1 ResNet50 TEST | batchsize : 2 | learning rate : 0.0001')
 
-plt.savefig('Results_plot_training_ResNet50.png')
+plt.savefig('Results_plot_training_ResNet50_TEST.png')
 
 
 # Loading and evaluating model
@@ -352,7 +352,7 @@ cross_entropy = -LL/len(y_label_eval)
 
 rho_square = 1-(LL/(len(y_label_eval)* np.log(0.5)))
 
-file = open("Results_eval_ResNet50.txt", "w")
+file = open("Results_eval_ResNet50_TEST.txt", "w")
 
 print(f'Parameters: {params}')
 print(f'Ratio: {ratio}')
@@ -360,7 +360,7 @@ print(f'Log loss: {LL}')
 print(f'Cross entropy: {cross_entropy}')
 print(f'Rho: {rho_square}')
 
-file.write(f'Model 1 : ResNet50 \nbatch size = 10 \nlearning rate = 0.0001 \nnum_epochs = 10\n Parameters: {params} \nRatio: {ratio} \nLog loss: {LL} \nCross entropy: {cross_entropy} \nRho: {rho_square}')
+file.write(f'Model 1 TEST : ResNet50 \nbatch size = 2 \nlearning rate = 0.0001 \nnum_epochs = 10\n Parameters: {params} \nRatio: {ratio} \nLog loss: {LL} \nCross entropy: {cross_entropy} \nRho: {rho_square}')
 
 file.close()
 
