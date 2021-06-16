@@ -30,7 +30,7 @@ device = torch.device('cuda' if torch.cuda.is_available() else 'cpu')
 # Hyperparameters
 batch_size = 10
 learning_rate = 0.0001
-num_epochs = 10
+num_epochs = 100
 
 #Load and transform Data
 
@@ -62,7 +62,7 @@ dataset = ImageChoiceDataset(csv_file = 'dataset.csv', root_dir = '/tudelft.net/
 
 # 45798, 9814, 9813
 
-train_set, test_set, val_set, junk = torch.utils.data.random_split(dataset, [100, 100, 100, 65125])
+train_set, test_set, val_set, junk = torch.utils.data.random_split(dataset, [1000, 1000, 1000, 62425])
 
 train_loader = DataLoader(dataset=train_set, batch_size=batch_size, shuffle=True)
 
