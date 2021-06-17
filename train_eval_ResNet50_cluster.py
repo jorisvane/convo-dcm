@@ -66,9 +66,9 @@ train_set, test_set, val_set, junk = torch.utils.data.random_split(dataset, [100
 
 train_loader = DataLoader(dataset=train_set, batch_size=batch_size, shuffle=True, num_workers=16, pin_memory=True)
 
-val_loader = DataLoader(dataset=val_set, batch_size=batch_size, shuffle=True, num_workers=8, pin_memory=True)
+val_loader = DataLoader(dataset=val_set, batch_size=batch_size, shuffle=True, num_workers=16, pin_memory=True)
 
-test_loader = DataLoader(dataset=test_set, batch_size=batch_size, shuffle=True, num_workers=8, pin_memory=True)
+test_loader = DataLoader(dataset=test_set, batch_size=batch_size, shuffle=True, num_workers=16, pin_memory=True)
 
 
 model = NN(my_pretrained_model=pretrained).to(device)
