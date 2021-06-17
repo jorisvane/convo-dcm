@@ -14,7 +14,7 @@ import os
 import itertools
 import numpy as np
 from sklearn.metrics import log_loss
-#import threading
+import threading
 
 print('START')
 cwd = os.getcwd()
@@ -65,16 +65,17 @@ torch.save(model.state_dict(), FILE)
 criterion = nn.BCELoss(reduction='sum')
 optimizer = optim.Adam(model.parameters(), lr=learning_rate)
 
-def train_model(model, batch_size, num_epochs, FILE):
-    file = open("TESTING_TIME.txt", "w")
-    ######################
-    # HYPERPARAMETERS TEXT
-    ######################
-    file.write('Model 1 TEST : ResNet50 \nbatch size = 60 \nlearning rate = 0.0001 \nnum_epochs = 100\n')
-    training_loss = []
-    validation_loss = []
-    # Train the network
-    for epoch in range(num_epochs):
+
+file = open("TESTING_TIME.txt", "w")
+######################
+# HYPERPARAMETERS TEXT
+######################
+file.write('Model 1 TEST : ResNet50 \nbatch size = 60 \nlearning rate = 0.0001 \nnum_epochs = 100\n')
+training_loss = []
+validation_loss = []
+# Train the network
+for epoch in range(num_epochs):
+    def train(model, train_loader):
         epoch_loss_train = 0.0
         for i, (image1, image2, y_label, price1, price2, delta_cost, delta_rating) in enumerate(train_loader):   
             # Get data to cuda
@@ -97,8 +98,12 @@ def train_model(model, batch_size, num_epochs, FILE):
             optimizer.step()
             # Calculate loss and accuracy
             epoch_loss_train += loss.item()
+        return epoch_loss_train
 
-    # Evaluate model during training
+    x = threading.Thread(target=train, arg(model, train_loader))
+
+# Evaluate model during training
+    def eval(model, val_loader):
         model.eval()
         with torch.no_grad():
             epoch_loss_val = 0.0
@@ -116,25 +121,23 @@ def train_model(model, batch_size, num_epochs, FILE):
                 loss = criterion(prob2, y_label)
                 # Validation loss and accuracy for difference
                 epoch_loss_val += loss.item()
+        return epoch_loss_val
 
-        a = epoch_loss_train / len(train_loader.dataset)
-        b = epoch_loss_val / len(val_loader.dataset)
-        file.write(f'Epoch {epoch+1} | Training Loss: {a} | Validation Loss: {b}\n')
-        if len(validation_loss) > 0 and b < min(validation_loss):
-                torch.save(model.state_dict(), FILE)
-                print('Model saved')
-        # Appending accuracy and loss for plot
-        training_loss.append(a)
-        validation_loss.append(b)
+    y = threading.Thread(target=eval, arg(model, val_loader))
 
-    file.close
+    a = epoch_loss_train / len(train_loader.dataset)
+    b = epoch_loss_val / len(val_loader.dataset)
 
-    return model, training_loss, validation_loss
+    file.write(f'Epoch {epoch+1} | Training Loss: {a} | Validation Loss: {b}\n')
 
+    if len(validation_loss) > 0 and b < min(validation_loss):
+            torch.save(model.state_dict(), FILE)
+            print('Model saved')
+    # Appending accuracy and loss for plot
+    training_loss.append(a)
+    validation_loss.append(b)
 
-
-model, training_loss, validation_loss = train_model(model, batch_size, num_epochs, FILE)
-
+file.close
 
 # Plotting results for each epoch
 
