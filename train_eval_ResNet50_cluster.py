@@ -33,7 +33,6 @@ learning_rate = 0.0001
 num_epochs = 100
 
 #Load and transform Data
-
 my_transforms = transforms.Compose([
     transforms.ToPILImage(),
     transforms.Resize(256),
@@ -43,12 +42,8 @@ my_transforms = transforms.Compose([
     #transforms.Normalize(mean=[0.0,0.0,0.0], std=[1.0,1.0,1.0]) # This does nothing
 
 ])
-
-
 #########################################################
-
 # PATH TO CSV AND PATH TO IMAGES FOLDER IMPORTANT FOR HPC
-
 #########################################################
 
 
@@ -63,52 +58,28 @@ dataset = ImageChoiceDataset(csv_file = 'dataset.csv', root_dir = '/tudelft.net/
 # 45798, 9814, 9813
 
 train_set, test_set, val_set, junk = torch.utils.data.random_split(dataset, [1000, 1000, 1000, 62425])
-
 train_loader = DataLoader(dataset=train_set, batch_size=batch_size, shuffle=True, num_workers=16, pin_memory=True)
-
 val_loader = DataLoader(dataset=val_set, batch_size=batch_size, shuffle=True, num_workers=16, pin_memory=True)
-
 test_loader = DataLoader(dataset=test_set, batch_size=batch_size, shuffle=True, num_workers=16, pin_memory=True)
-
 
 model = NN(my_pretrained_model=pretrained).to(device)
 
 ##########################
-
 # NAME MODEL VERSION
-
 ##########################
 
 FILE = cwd + '/model_ResNet50_TEST.pth'
 
 torch.save(model.state_dict(), FILE)
 
-# CUDA ran out of memory so set allot smaller batch size and tried emptying the cache
-#torch.cuda.empty_cache()
-
 # Loss and optimizer
 criterion = nn.BCELoss(reduction='sum')
 optimizer = optim.Adam(model.parameters(), lr=learning_rate)
 
-
-# Accuracy
-
-# def binary_acc(y_pred, y_test):
-#     y_pred_tag = torch.round(y_pred)
-
-#     correct_results_sum = (y_pred_tag == y_test).sum().float()
-#     acc = correct_results_sum/y_test.shape[0]
-#     acc = torch.round(acc * 100)
-    
-#     return acc
-
-
 file = open("Results_train_ResNet50_TEST.txt", "w")
 
 ######################
-
 # HYPERPARAMETERS TEXT
-
 ######################
 
 file.write('Model 1 TEST : ResNet50 \nbatch size = 60 \nlearning rate = 0.0001 \nnum_epochs = 100\n')
@@ -128,7 +99,6 @@ for epoch in range(num_epochs):
     for i, (image1, image2, y_label, price1, price2, delta_cost, delta_rating) in enumerate(train_loader):
         
         # Get data to cuda
-
         image1 = image1.to(device=device)
         image2 = image2.to(device=device)
         y_label = y_label.to(device=device)
@@ -136,7 +106,6 @@ for epoch in range(num_epochs):
         price2 = price2.to(device=device)
         
         # Forward
-
         prob = model(image1, price1, image2, price2)
         
         y_label = y_label.unsqueeze(1)
@@ -152,25 +121,18 @@ for epoch in range(num_epochs):
         # print(y_label)
         # print(total)
 
-        
-        
         loss = criterion(prob, y_label)
-        #acc = binary_acc(prob, y_label)
 
         # Backward
-        
         optimizer.zero_grad()
         loss.backward()
 
         # Gradient descent or adam step
-
         optimizer.step()
 
         # Calculate loss and accuracy
-
         epoch_loss_train += loss.item()
-
-        epoch_acc_train += total #acc.item()
+        epoch_acc_train += total
     
 
     # Evaluate model during training
@@ -226,13 +188,9 @@ for epoch in range(num_epochs):
 
 
     # Appending accuracy and loss for plot
-
     training_loss.append(a)
-
     validation_loss.append(b)
-
     training_acc.append(c)
-    
     validation_acc.append(d)
 
 
@@ -240,20 +198,14 @@ file.close
 
 
 # Plotting results for each epoch
-
-
 a_list = list(range(1, num_epochs+1))
-
 fig, (ax1, ax2) = plt.subplots(1, 2)
 
 # Plot 1
-
 ax1.plot(a_list, training_acc, label='Training accuracy')
 ax1.plot(a_list, validation_acc, label='Validation accuracy')
 
-
 # Plot 2
-
 ax2.plot(a_list, training_loss, label='Training loss')
 ax2.plot(a_list, validation_loss, label='Validation loss')
 
@@ -268,32 +220,24 @@ ax2.legend()
 fig.tight_layout(pad=3.0)
 
 #################################
-
 # MODEL TYPE AND HYPERPARAMETERS
-
 #################################
 
 fig.suptitle('Model 1 ResNet50 TEST | batchsize : 60 | learning rate : 0.0001')
-
 plt.savefig('Results_plot_training_ResNet50_TEST.png')
 
 
 # Loading and evaluating model
-
 model.load_state_dict(torch.load(FILE))
 model.eval()
 
 delta_cost_eval = []
-
 delta_rating_eval = []
-
 prob_eval = []
-
 y_label_eval = []
 
 for i, (image1, image2, y_label, price1, price2, delta_cost, delta_rating) in enumerate(test_loader):
 
-    
     image1 = image1.to(device=device)
     image2 = image2.to(device=device)
     y_label = y_label.to(device=device)
@@ -303,53 +247,37 @@ for i, (image1, image2, y_label, price1, price2, delta_cost, delta_rating) in en
     delta_rating = delta_rating.to(device=device)
 
     # Forward
-
     prob = model(image1, price1, image2, price2)
 
     a = delta_cost.tolist()
     b = delta_rating.tolist()
-
     d = y_label.tolist()
-    
     c = prob.tolist()
     List_flat = list(itertools.chain(*c))
     
-
     delta_cost_eval.append(a)
-    
     delta_rating_eval.append(b)
-    
     prob_eval.append(List_flat)
-
     y_label_eval.append(d)
 
 
 
 y_label_eval = list(itertools.chain(*y_label_eval))
-
 delta_cost_eval = list(itertools.chain(*delta_cost_eval))
-
 delta_rating_eval = list(itertools.chain(*delta_rating_eval))
-
 prob_eval = list(itertools.chain(*prob_eval))
 
 
 y_label_eval = np.array(y_label_eval)
-
 delta_cost_eval = np.array(delta_cost_eval)
-
 delta_rating_eval = np.array(delta_rating_eval)
-
 prob_eval = np.array(prob_eval)
 
 name = 'Model 1 : ResNet50 : ratio'
 
 ratio, params = function_eval(delta_cost_eval, delta_rating_eval, prob_eval, name)
-
 LL = -log_loss(y_label_eval, prob_eval, normalize=False)
-
 cross_entropy = -LL/len(y_label_eval)
-
 rho_square = 1-(LL/(len(y_label_eval)* np.log(0.5)))
 
 file = open("Results_eval_ResNet50_TEST.txt", "w")
