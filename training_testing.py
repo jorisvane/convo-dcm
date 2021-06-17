@@ -14,7 +14,7 @@ import os
 import itertools
 import numpy as np
 from sklearn.metrics import log_loss
-from pytorchtools import EarlyStopping
+
 print('START')
 cwd = os.getcwd()
 # Set device
@@ -23,7 +23,6 @@ device = torch.device('cuda' if torch.cuda.is_available() else 'cpu')
 batch_size = 60
 learning_rate = 0.0001
 num_epochs = 100
-patience = 5
 #Load and transform Data
 my_transforms = transforms.Compose([
     transforms.ToPILImage(),
@@ -128,12 +127,6 @@ def train_model(model, batch_size, patience, num_epochs, FILE):
         # Appending accuracy and loss for plot
         training_loss.append(a)
         validation_loss.append(b)
-
-        early_stopping(b, model)
-            
-        if early_stopping.early_stop:
-            print("Early stopping")
-            break
 
     file.close
 
