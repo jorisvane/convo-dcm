@@ -64,7 +64,7 @@ torch.save(model.state_dict(), FILE)
 criterion = nn.BCELoss(reduction='sum')
 optimizer = optim.Adam(model.parameters(), lr=learning_rate)
 
-def train_model(model, batch_size, patience, num_epochs, FILE):
+def train_model(model, batch_size, num_epochs, FILE):
     file = open("TESTING_TIME.txt", "w")
     ######################
     # HYPERPARAMETERS TEXT
@@ -72,8 +72,6 @@ def train_model(model, batch_size, patience, num_epochs, FILE):
     file.write('Model 1 TEST : ResNet50 \nbatch size = 60 \nlearning rate = 0.0001 \nnum_epochs = 100\n')
     training_loss = []
     validation_loss = []
-    # Early stopping object
-    early_stopping = EarlyStopping(patience=patience, verbose=True)
     # Train the network
     for epoch in range(num_epochs):
         epoch_loss_train = 0.0
@@ -134,7 +132,7 @@ def train_model(model, batch_size, patience, num_epochs, FILE):
 
 
 
-model, training_loss, validation_loss = train_model(model, batch_size, patience, num_epochs, FILE)
+model, training_loss, validation_loss = train_model(model, batch_size, num_epochs, FILE)
 
 
 # Plotting results for each epoch
