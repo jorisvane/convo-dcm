@@ -135,7 +135,7 @@ def train_model(model, batch_size, patience, num_epochs, FILE):
             print("Early stopping")
             break
 
-        file.close
+    file.close
 
     return model, training_loss, validation_loss
 
