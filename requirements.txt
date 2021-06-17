@@ -5,3 +5,4 @@ torch==1.7.1
 pillow==8.0.1
 torchvision==0.8.2
 pandas==1.1.3
+pytorchtools==0.0.2
