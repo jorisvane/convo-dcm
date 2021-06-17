@@ -100,8 +100,6 @@ for epoch in range(num_epochs):
             epoch_loss_train += loss.item()
         return epoch_loss_train
 
-    x = threading.Thread(target=train, arg(model, train_loader))
-
 # Evaluate model during training
     def eval(model, val_loader):
         model.eval()
@@ -123,7 +121,15 @@ for epoch in range(num_epochs):
                 epoch_loss_val += loss.item()
         return epoch_loss_val
 
+
+    x = threading.Thread(target=train, arg(model, train_loader))
+    x.start()
+
     y = threading.Thread(target=eval, arg(model, val_loader))
+    y.start()
+
+    x.join()
+    y.join()
 
     a = epoch_loss_train / len(train_loader.dataset)
     b = epoch_loss_val / len(val_loader.dataset)
