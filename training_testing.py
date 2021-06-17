@@ -125,9 +125,9 @@ def train_model(model, batch_size, patience, num_epochs, FILE):
         if len(validation_loss) > 0 and b < min(validation_loss):
                 torch.save(model.state_dict(), FILE)
                 print('Model saved')
-            # Appending accuracy and loss for plot
-            training_loss.append(a)
-            validation_loss.append(b)
+        # Appending accuracy and loss for plot
+        training_loss.append(a)
+        validation_loss.append(b)
 
         early_stopping(b, model)
             
