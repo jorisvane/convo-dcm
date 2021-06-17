@@ -136,7 +136,7 @@ def train_model(model, batch_size, patience, num_epochs, FILE):
             break
 
         file.close
-        
+
     return model, training_loss, validation_loss
 
 
@@ -166,7 +166,7 @@ fig.tight_layout(pad=3.0)
 
 fig.suptitle('Model 1 ResNet50 TEST | batchsize : 60 | learning rate : 0.0001')
 
-plt.savefig('Results_plot_training_ResNet50_TEST.png')
+plt.savefig('TRY1.png')
 
 # Loading and evaluating model
 
@@ -218,7 +218,7 @@ ratio, params = function_eval(delta_cost_eval, delta_rating_eval, prob_eval, nam
 LL = -log_loss(y_label_eval, prob_eval, normalize=False)
 cross_entropy = -LL/len(y_label_eval)
 rho_square = 1-(LL/(len(y_label_eval)* np.log(0.5)))
-file = open("Results_eval_ResNet50_TEST.txt", "w")
+file = open("TESTING_TIME_EVAL.txt", "w")
 
 print(f'Parameters: {params}')
 print(f'Ratio: {ratio}')
