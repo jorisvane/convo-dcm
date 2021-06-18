@@ -28,7 +28,7 @@ cwd = os.getcwd()
 device = torch.device('cuda' if torch.cuda.is_available() else 'cpu')
 
 # Hyperparameters
-batch_size = 128
+batch_size = 60
 learning_rate = 0.0001
 num_epochs = 100
 
