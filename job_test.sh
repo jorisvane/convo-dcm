@@ -4,7 +4,7 @@
 #SBATCH --time=2:00:00
 #SBATCH --ntasks=1
 #SBATCH --cpus-per-task=1
-#SBATCH --mem=12000
+#SBATCH --mem=5000
 #SBATCH --gres=gpu:pascal:1
 
 
@@ -15,5 +15,5 @@ module load cuda/11.1
 module load cudnn/11.1-8.0.5.39
 
 previous=$(nvidia-smi --query-accounted-apps=gpu_utilization,mem_utilization,max_memory_usage,time --format=csv | tail -n +2)
-srun python3 train_eval_ResNet50_cluster.py $*
+srun python3 resnet_only_loss.py $*
 nvidia-smi --query-accounted-apps=gpu_utilization,mem_utilization,max_memory_usage,time --format=csv | grep -v -F "$previous"
