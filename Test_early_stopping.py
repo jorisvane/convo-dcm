@@ -204,7 +204,7 @@ file.close
 
 
 # Plotting results for each epoch
-a_list = list(range(1, num_epochs+1))
+a_list = list(range(1, len(training_acc)+1))
 fig, (ax1, ax2) = plt.subplots(1, 2)
 
 # Plot 1
