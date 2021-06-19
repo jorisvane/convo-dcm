@@ -1,7 +1,7 @@
 import numpy as np
 import torch
 
-class EarlyStopping(val_loss, model, FILE):
+class EarlyStopping:
     """Early stops the training if validation loss doesn't improve after a given patience."""
     def __init__(self, patience=7, verbose=False, delta=0, trace_func=print):
         """

@@ -92,6 +92,8 @@ validation_acc = []
 training_loss = []
 validation_loss = []
 
+early_stopping = EarlyStopping(patience=patience, verbose=True)
+
 # Train the network
 for epoch in range(num_epochs):
 
@@ -183,9 +185,9 @@ for epoch in range(num_epochs):
     
     file.write(f'Epoch {epoch+1} | Training Loss: {a} | Validation Loss: {b} | Training Accuracy: {c} | Validation Accuracy: {d}\n')
     
-    EarlyStopping(b, model, FILE)
+    early_stopping(b, model, FILE)
         
-    if EarlyStopping.early_stop:
+    if early_stopping.early_stop:
         print("Early stopping")
         break
 
