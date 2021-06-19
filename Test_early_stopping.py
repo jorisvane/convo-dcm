@@ -20,12 +20,14 @@ import itertools
 import numpy as np
 from sklearn.metrics import log_loss
 
+from pytorchtools import Earlysyopping
+
 print('START')
 
 cwd = os.getcwd()
 
 # Set device
-device = torch.device('cuda:0' if torch.cuda.is_available() else 'cpu')
+device = torch.device('cuda' if torch.cuda.is_available() else 'cpu')
 
 # Hyperparameters
 batch_size = 60
@@ -84,6 +86,9 @@ file = open("Training_ResNet50.txt", "w")
 
 file.write('Model 1 : ResNet50 \nbatch size = 60 \nlearning rate = 0.0001 \nnum_epochs = 100\n')
 
+training_acc = []
+validation_acc = []
+
 training_loss = []
 validation_loss = []
 
@@ -91,6 +96,7 @@ validation_loss = []
 for epoch in range(num_epochs):
 
     epoch_loss_train = 0.0
+    epoch_acc_train = 0.0
 
     for i, (image1, image2, y_label, price1, price2, delta_cost, delta_rating) in enumerate(train_loader):
         
@@ -110,6 +116,9 @@ for epoch in range(num_epochs):
         #print(prob.size())
         #print(y_label.size())
 
+        preds = torch.round(prob)
+        total = torch.sum(preds == y_label)
+
         # print(preds)
         # print(y_label)
         # print(total)
@@ -125,6 +134,7 @@ for epoch in range(num_epochs):
 
         # Calculate loss and accuracy
         epoch_loss_train += loss.item()
+        epoch_acc_train += total
     
 
     # Evaluate model during training
@@ -133,6 +143,7 @@ for epoch in range(num_epochs):
     with torch.no_grad():
 
         epoch_loss_val = 0.0
+        epoch_acc_val = 0.0
 
         for j, (image1, image2, y_label, price1, price2, delta_cost, delta_rating) in enumerate(val_loader):
         
@@ -151,30 +162,39 @@ for epoch in range(num_epochs):
             y_label = y_label.unsqueeze(1)
             y_label = y_label.float()
 
+            preds = torch.round(prob2)
+            total = torch.sum(preds == y_label)
+
             loss = criterion(prob2, y_label)
             #acc = binary_acc(prob2, y_label)
 
             # Validation loss and accuracy for difference
             
             epoch_loss_val += loss.item()
+            epoch_acc_val += total #acc.item()
             
 
 
     a = epoch_loss_train / len(train_loader.dataset)
     b = epoch_loss_val / len(val_loader.dataset)
+    c = (epoch_acc_train / len(train_loader.dataset)) * 100.
+    d = (epoch_acc_val / len(val_loader.dataset)) * 100.
             
     
-    file.write(f'Epoch {epoch+1} | Training Loss: {a} | Validation Loss: {b} \n')
+    file.write(f'Epoch {epoch+1} | Training Loss: {a} | Validation Loss: {b} | Training Accuracy: {c} | Validation Accuracy: {d}\n')
     
-    if len(validation_loss) > 0 and b < min(validation_loss):
-
-        torch.save(model.state_dict(), FILE)
-        print('Model saved')
+    early_stopping(b, model, FILE)
+        
+    if early_stopping.early_stop:
+        print("Early stopping")
+        break
 
 
     # Appending accuracy and loss for plot
     training_loss.append(a)
     validation_loss.append(b)
+    training_acc.append(c)
+    validation_acc.append(d)
 
 
 file.close
@@ -182,22 +202,31 @@ file.close
 
 # Plotting results for each epoch
 a_list = list(range(1, num_epochs+1))
-fig = plt.plot()
+fig, (ax1, ax2) = plt.subplots(1, 2)
 
-plt.plot(a_list, training_loss, label='Training loss')
-plt.plot(a_list, validation_loss, label='Validation loss')
+# Plot 1
+ax1.plot(a_list, training_acc, label='Training accuracy')
+ax1.plot(a_list, validation_acc, label='Validation accuracy')
 
-plt.xlabel('Epochs')
-plt.ylabel('Loss')
-plt.legend()
+# Plot 2
+ax2.plot(a_list, training_loss, label='Training loss')
+ax2.plot(a_list, validation_loss, label='Validation loss')
 
-#fig.tight_layout(pad=3.0)
+ax1.set_xlabel('Epochs')
+ax1.set_ylabel('Accuracy(%)')
+ax1.legend()
+
+ax2.set_xlabel('Epochs')
+ax2.set_ylabel('Loss')
+ax2.legend()
+
+fig.tight_layout(pad=3.0)
 
 #################################
 # MODEL TYPE AND HYPERPARAMETERS
 #################################
 
-plt.title('Model 1 ResNet50 | batchsize : 60 | learning rate : 0.0001')
+fig.suptitle('Model 1 ResNet50 | batchsize : 60 | learning rate : 0.0001')
 plt.savefig('Training_ResNet50.png')
 
 
