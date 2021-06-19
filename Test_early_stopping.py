@@ -183,9 +183,9 @@ for epoch in range(num_epochs):
     
     file.write(f'Epoch {epoch+1} | Training Loss: {a} | Validation Loss: {b} | Training Accuracy: {c} | Validation Accuracy: {d}\n')
     
-    early_stopping(b, model, FILE)
+    EarlyStopping(b, model, FILE)
         
-    if early_stopping.early_stop:
+    if EarlyStopping.early_stop:
         print("Early stopping")
         break
 
