@@ -20,7 +20,7 @@ import itertools
 import numpy as np
 from sklearn.metrics import log_loss
 
-from pytorchtools import Earlysyopping
+from pytorchtools import EarlyStopping
 
 print('START')
 
