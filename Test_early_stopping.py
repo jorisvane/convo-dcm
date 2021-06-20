@@ -60,7 +60,7 @@ dataset = ImageChoiceDataset(csv_file = 'dataset.csv', root_dir = '/tudelft.net/
 
 # 45798, 9814, 9813
 
-train_set, test_set, val_set, junk = torch.utils.data.random_split(dataset, [10000, 1000, 1000, 53425])
+train_set, test_set, val_set, junk = torch.utils.data.random_split(dataset, [20000, 1000, 1000, 43425])
 train_loader = DataLoader(dataset=train_set, batch_size=batch_size, shuffle=True, num_workers=8, pin_memory=True)
 val_loader = DataLoader(dataset=val_set, batch_size=batch_size, shuffle=True, num_workers=8, pin_memory=True)
 test_loader = DataLoader(dataset=test_set, batch_size=batch_size, shuffle=True, num_workers=8, pin_memory=True)
