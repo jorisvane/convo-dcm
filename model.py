@@ -15,8 +15,6 @@ pretrained = newmodel
 
 for parameter in pretrained.parameters():
     parameter.requires_grad = False
-for parameter in pretrained[-2].parameters():
-    parameter.requires_grad = True
 
 # for name, param in pretrained.named_parameters():
 #     print(name, param.requires_grad)
