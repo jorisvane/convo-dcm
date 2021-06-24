@@ -3,16 +3,17 @@ import torch.nn as nn
 from torchvision import datasets, transforms, models
 import math
 
-model = models.vgg16(pretrained=True)
-#vgg16_model.classifier = vgg16_model.classifier[:-1]
+model = models.inception_v3(pretrained=True)
+model.aux_logits=False
 
 #print(model)
 
-model.classifier = torch.nn.Sequential(*(list(model.classifier.children())[:-3]))
+#newmodel = torch.nn.Sequential(*(list(model.children())[:-1]))
+
+model.AuxLogits.fc = nn.Linear(768, 768)
+model.fc = nn.Linear(2048, 2048)
 
 print(model)
-
-#model.classifier = model.classifier[:-1]
 
 pretrained = model
 
@@ -21,11 +22,6 @@ pretrained = model
 for parameter in pretrained.parameters():
     parameter.requires_grad = False
 
-# for name, param in pretrained.named_parameters():
-#     print(name, param.requires_grad)
-
-# print(pretrained)
-
 class NN(nn.Module):
 
     def __init__(self, my_pretrained_model):
@@ -33,8 +29,7 @@ class NN(nn.Module):
         self.pretrained = my_pretrained_model
         
         self.MLP = nn.Sequential(
-
-            nn.Linear(4096, 124),
+            nn.Linear(2048, 124),
             nn.ReLU(),                # not in MATLAB model from Sander 
             nn.Linear(124, 1)
         )
@@ -43,7 +38,7 @@ class NN(nn.Module):
     
     def forward_once(self, x, y):
 
-        print(x.size())
+        # print(x.size())
 
         x = self.pretrained(x)
 
@@ -55,7 +50,7 @@ class NN(nn.Module):
 
         x = self.MLP(x)
 
-        print(x.size())
+       # print(x.size())
 
         y = torch.unsqueeze(y,1)
         

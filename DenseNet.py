@@ -3,25 +3,20 @@ import torch.nn as nn
 from torchvision import datasets, transforms, models
 import math
 
-model = models.resnet50(pretrained=True)
+model = models.densenet121(pretrained=True)
 
-#print(model)
+# print(model)
 
 newmodel = torch.nn.Sequential(*(list(model.children())[:-1]))
 
-pretrained = newmodel
+# print(newmodel)
+
+pretrained = model
 
 # You could make all the weights from the feature extractor fixed
 
 for parameter in pretrained.parameters():
     parameter.requires_grad = False
-for parameter in pretrained[-2].parameters():
-    parameter.requires_grad = True
-
-# for name, param in pretrained.named_parameters():
-#     print(name, param.requires_grad)
-
-# print(pretrained)
 
 class NN(nn.Module):
 
@@ -30,7 +25,8 @@ class NN(nn.Module):
         self.pretrained = my_pretrained_model
         
         self.MLP = nn.Sequential(
-            nn.Linear(2048, 124),
+
+            nn.Linear(1000, 124),
             nn.ReLU(),                # not in MATLAB model from Sander 
             nn.Linear(124, 1)
         )
@@ -38,17 +34,21 @@ class NN(nn.Module):
     
     
     def forward_once(self, x, y):
+
+        print(x.size())
+
         x = self.pretrained(x)
 
-        #print(x.size())
-
-        # squeeze to change [batch size, 2048, 1, 1] to [batch size, 2048]
-
-        x = torch.squeeze(x)
-
-        #print(x.size())
+        print(x.size())
         
+        x = torch.squeeze(x)
+        
+        print(x.size())
+
         x = self.MLP(x)
+
+        print(x.size())
+
         y = torch.unsqueeze(y,1)
         
         z = torch.cat((x,y), dim=1)

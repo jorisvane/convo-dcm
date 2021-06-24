@@ -5,7 +5,7 @@ import math
 
 model = models.googlenet(pretrained=True)
 
-print(model)
+# print(model)
 
 newmodel = torch.nn.Sequential(*(list(model.children())[:-1]))
 
@@ -15,11 +15,6 @@ pretrained = newmodel
 
 for parameter in pretrained.parameters():
     parameter.requires_grad = False
-
-# for name, param in pretrained.named_parameters():
-#     print(name, param.requires_grad)
-
-# print(pretrained)
 
 class NN(nn.Module):
 
@@ -37,19 +32,19 @@ class NN(nn.Module):
     
     def forward_once(self, x, y):
 
-        # print(x.size())
+        #print(x.size())
 
         x = self.pretrained(x)
 
-        # print(x.size())
-
-        # squeeze to change [batch size, 1024, 1, 1] to [batch size, 1024]
+        #print(x.size())
         
         x = torch.squeeze(x)
         
-        # print(x.size())
+        #print(x.size())
 
         x = self.MLP(x)
+
+        #print(x.size())
 
         y = torch.unsqueeze(y,1)
         
