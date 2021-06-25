@@ -71,7 +71,7 @@ model = NN(my_pretrained_model=pretrained).to(device)
 # NAME MODEL VERSION
 ##########################
 
-FILE = cwd + '/ResNet50_without_GPU.pth'
+FILE = cwd + '/ResNet50_last_layer.pth'
 
 torch.save(model.state_dict(), FILE)
 
@@ -79,7 +79,7 @@ torch.save(model.state_dict(), FILE)
 criterion = nn.BCELoss(reduction='sum')
 optimizer = optim.Adam(model.parameters(), lr=learning_rate)
 
-file = open("Training_ResNet50_without_GPU.txt", "w")
+file = open("Training_ResNet50_last_layer.txt", "w")
 
 ######################
 # HYPERPARAMETERS TEXT
@@ -230,7 +230,7 @@ fig.tight_layout(pad=3.0)
 #################################
 
 fig.suptitle('Model 1 ResNet50 | batchsize : 60 | learning rate : 0.0001')
-plt.savefig('Training_ResNet50_without_GPU.png')
+plt.savefig('Training_ResNet50_last_layer.png')
 
 
 # Loading and evaluating model
