@@ -71,7 +71,7 @@ model = NN(my_pretrained_model=pretrained).to(device)
 # NAME MODEL VERSION
 ##########################
 
-FILE = cwd + '/ResNet50.pth'
+FILE = cwd + '/ResNet50_last_layer.pth'
 
 torch.save(model.state_dict(), FILE)
 
