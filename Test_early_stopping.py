@@ -33,7 +33,7 @@ device = torch.device('cuda' if torch.cuda.is_available() else 'cpu')
 batch_size = 60
 learning_rate = 0.0001
 num_epochs = 100
-patience = 5
+patience = 10
 
 #Load and transform Data
 my_transforms = transforms.Compose([
