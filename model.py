@@ -13,8 +13,9 @@ pretrained = newmodel
 
 # You could make all the weights from the feature extractor fixed
 
-# for parameter in pretrained.parameters():
-#     parameter.requires_grad = False
+for parameter in pretrained.parameters():
+    parameter.requires_grad = True
+
 # for parameter in pretrained[-2].parameters():
 #     parameter.requires_grad = True
 

@@ -1,11 +1,11 @@
 #!/bin/sh
 #SBATCH --partition=general
-#SBATCH --qos=short
-#SBATCH --time=3:00:00
+#SBATCH --qos=long
+#SBATCH --time=6:00:00
 #SBATCH --ntasks=1
 #SBATCH --cpus-per-task=8
 #SBATCH --mem=5000
-#SBATCH --gres=gpu:pascal:1
+#SBATCH --gres=gpu:p100:1
 
 
 

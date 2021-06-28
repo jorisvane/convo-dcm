@@ -33,7 +33,7 @@ device = torch.device('cuda' if torch.cuda.is_available() else 'cpu')
 batch_size = 60
 learning_rate = 0.0001
 num_epochs = 100
-patience = 10
+patience = 5
 
 #Load and transform Data
 my_transforms = transforms.Compose([
@@ -71,7 +71,7 @@ model = NN(my_pretrained_model=pretrained).to(device)
 # NAME MODEL VERSION
 ##########################
 
-FILE = cwd + '/ResNet50_last_layer.pth'
+FILE = cwd + '/ResNet50_fully_trained.pth'
 
 torch.save(model.state_dict(), FILE)
 
@@ -79,7 +79,7 @@ torch.save(model.state_dict(), FILE)
 criterion = nn.BCELoss(reduction='sum')
 optimizer = optim.Adam(model.parameters(), lr=learning_rate)
 
-file = open("Training_ResNet50_last_layer.txt", "w")
+file = open("Training_ResNet50_fully_trained.txt", "w")
 
 ######################
 # HYPERPARAMETERS TEXT
@@ -230,7 +230,7 @@ fig.tight_layout(pad=3.0)
 #################################
 
 fig.suptitle('Model 1 ResNet50 | batchsize : 60 | learning rate : 0.0001')
-plt.savefig('Training_ResNet50_last_layer.png')
+plt.savefig('Training_ResNet50_fully_trained.png')
 
 
 # Loading and evaluating model
@@ -286,7 +286,7 @@ LL = -log_loss(y_label_eval, prob_eval, normalize=False)
 cross_entropy = -LL/len(y_label_eval)
 rho_square = 1-(LL/(len(y_label_eval)* np.log(0.5)))
 
-file = open("Evaluation_ResNet50_last_layer.txt", "w")
+file = open("Evaluation_ResNet50_fully_trained.txt", "w")
 
 print(f'Parameters: {params}')
 print(f'Ratio: {ratio}')
