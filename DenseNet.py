@@ -7,11 +7,14 @@ model = models.densenet121(pretrained=True)
 
 # print(model)
 
-newmodel = torch.nn.Sequential(*(list(model.children())[:-1]))
+# newmodel = torch.nn.Sequential(*(list(model.children())[:-1]))
 
 # print(newmodel)
 
 pretrained = model
+
+pretrained.classifier = nn.Identity()
+pretrained.fc = nn.Identity()
 
 # You could make all the weights from the feature extractor fixed
 
@@ -26,7 +29,7 @@ class NN(nn.Module):
         
         self.MLP = nn.Sequential(
 
-            nn.Linear(1000, 124),
+            nn.Linear(1024, 124),
             nn.ReLU(),                # not in MATLAB model from Sander 
             nn.Linear(124, 1)
         )
@@ -35,19 +38,19 @@ class NN(nn.Module):
     
     def forward_once(self, x, y):
 
-        print(x.size())
+        # print(x.size())
 
         x = self.pretrained(x)
 
-        print(x.size())
+        # print(x.size())
         
         x = torch.squeeze(x)
         
-        print(x.size())
+        # print(x.size())
 
         x = self.MLP(x)
 
-        print(x.size())
+        # print(x.size())
 
         y = torch.unsqueeze(y,1)
         
