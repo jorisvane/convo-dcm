@@ -1,0 +1,9 @@
+Model 1 : ResNet50 
+batch size = 30 
+learning rate = 0.0001 
+num_epochs = 100
+ Parameters: [ 0.53678738 -0.40173204] 
+Ratio: 0.7484006802849065 
+Log loss: -293.8900375321167 
+Cross entropy: 0.29389003753211673 
+Rho: 0.5760063002857438
