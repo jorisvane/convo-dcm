@@ -24,6 +24,8 @@ from pytorchtools import EarlyStopping
 
 print('START')
 
+cwd = os.getcwd()
+
 FILE = cwd + '/ResNet50_fully_trained.pth'
 
 # Loading and evaluating model
