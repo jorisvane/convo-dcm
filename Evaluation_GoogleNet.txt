@@ -1,0 +1,9 @@
+Model 2 : GoogleNet 
+batch size = 60 
+learning rate = 0.0001 
+num_epochs = 100
+ Parameters: [ 0.46137018 -0.40758754] 
+Ratio: 0.8834284333378138 
+Log loss: -377.75196736913904 
+Cross entropy: 0.377751967369139 
+Rho: 0.45501910999049355
