@@ -7,8 +7,6 @@
 #SBATCH --mem=5000
 #SBATCH --gres=gpu:pascal:1
 
-
-
 module use /opt/insy/modulefiles
 
 module load cuda/11.1
