@@ -10,12 +10,12 @@ model.aux_logits=False
 
 #newmodel = torch.nn.Sequential(*(list(model.children())[:-1]))
 
-model.AuxLogits.fc = nn.Linear(768, 768)
-model.fc = nn.Linear(2048, 2048)
-
-print(model)
+# print(model)
 
 pretrained = model
+
+pretrained.AuxLogits.fc = nn.Identity()
+pretrained.fc = nn.Identity()
 
 # You could make all the weights from the feature extractor fixed
 
@@ -42,11 +42,11 @@ class NN(nn.Module):
 
         x = self.pretrained(x)
 
-        print(x.size())
+        # print(x.size())
         
         x = torch.squeeze(x)
         
-        print(x.size())
+        # print(x.size())
 
         x = self.MLP(x)
 
