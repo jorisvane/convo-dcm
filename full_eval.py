@@ -22,6 +22,10 @@ from sklearn.metrics import log_loss
 
 from pytorchtools import EarlyStopping
 
+device = torch.device('cuda' if torch.cuda.is_available() else 'cpu')
+
+model = NN(my_pretrained_model=pretrained).to(device)
+
 print('START')
 
 cwd = os.getcwd()
