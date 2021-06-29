@@ -67,9 +67,9 @@ test_loader = DataLoader(dataset=test_set, batch_size=batch_size, shuffle=True, 
 
 model = NN(my_pretrained_model=pretrained).to(device)
 
-##########################
+####################
 # NAME MODEL VERSION
-##########################
+####################
 
 FILE = cwd + '/DenseNet121.pth'
 
