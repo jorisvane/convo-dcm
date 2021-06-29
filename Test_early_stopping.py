@@ -7,8 +7,8 @@ from torch.utils.data import DataLoader
 from CustomDataset import ImageChoiceDataset
 from evaluation import function_eval
 
-from model import NN
-from model import pretrained
+from GoogleNet import NN
+from GoogleNet import pretrained
 
 import matplotlib.pyplot as plt
 
@@ -71,7 +71,7 @@ model = NN(my_pretrained_model=pretrained).to(device)
 # NAME MODEL VERSION
 ##########################
 
-FILE = cwd + '/ResNet50_fully_trained.pth'
+FILE = cwd + '/GoogleNet.pth'
 
 torch.save(model.state_dict(), FILE)
 
@@ -79,13 +79,13 @@ torch.save(model.state_dict(), FILE)
 criterion = nn.BCELoss(reduction='sum')
 optimizer = optim.Adam(model.parameters(), lr=learning_rate)
 
-file = open("Training_ResNet50_fully_trained.txt", "w")
+file = open("Training_GoogleNet.txt", "w")
 
 ######################
 # HYPERPARAMETERS TEXT
 ######################
 
-file.write('Model 1 : ResNet50 \nbatch size = 60 \nlearning rate = 0.0001 \nnum_epochs = 100\n')
+file.write('Model 2 : GoogleNet \nbatch size = 60 \nlearning rate = 0.0001 \nnum_epochs = 100\n')
 
 training_acc = []
 validation_acc = []
@@ -229,8 +229,8 @@ fig.tight_layout(pad=3.0)
 # MODEL TYPE AND HYPERPARAMETERS
 #################################
 
-fig.suptitle('Model 1 ResNet50 | batchsize : 60 | learning rate : 0.0001')
-plt.savefig('Training_ResNet50_fully_trained.png')
+fig.suptitle('Model 2 GoogleNet | batchsize : 60 | learning rate : 0.0001')
+plt.savefig('Training_GoogleNet.png')
 
 
 # Loading and evaluating model
@@ -279,14 +279,14 @@ delta_cost_eval = np.array(delta_cost_eval)
 delta_rating_eval = np.array(delta_rating_eval)
 prob_eval = np.array(prob_eval)
 
-name = 'Model 1 : ResNet50 : ratio'
+name = 'Model 2 : GoogleNet : ratio'
 
 ratio, params = function_eval(delta_cost_eval, delta_rating_eval, prob_eval, name)
 LL = -log_loss(y_label_eval, prob_eval, normalize=False)
 cross_entropy = -LL/len(y_label_eval)
 rho_square = 1-(LL/(len(y_label_eval)* np.log(0.5)))
 
-file = open("Evaluation_ResNet50_fully_trained.txt", "w")
+file = open("Evaluation_GoogleNet.txt", "w")
 
 print(f'Parameters: {params}')
 print(f'Ratio: {ratio}')
@@ -294,7 +294,7 @@ print(f'Log loss: {LL}')
 print(f'Cross entropy: {cross_entropy}')
 print(f'Rho: {rho_square}')
 
-file.write(f'Model 1 : ResNet50 \nbatch size = 60 \nlearning rate = 0.0001 \nnum_epochs = 100\n Parameters: {params} \nRatio: {ratio} \nLog loss: {LL} \nCross entropy: {cross_entropy} \nRho: {rho_square}')
+file.write(f'Model 2 : GoogleNet \nbatch size = 60 \nlearning rate = 0.0001 \nnum_epochs = 100\n Parameters: {params} \nRatio: {ratio} \nLog loss: {LL} \nCross entropy: {cross_entropy} \nRho: {rho_square}')
 
 file.close()
 

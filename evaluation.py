@@ -4,9 +4,11 @@ from scipy.optimize import curve_fit
 import numpy as np
 import matplotlib.pyplot as plt
 
+# Import functions from ResNet, GoogleNet, DenseNet and Inceptionv3
+
 import torch
-from model import pretrained
-from model import NN
+from GoogleNet import pretrained
+from GoogleNet import NN
 import os
 
 
