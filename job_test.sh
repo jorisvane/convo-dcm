@@ -7,8 +7,6 @@
 #SBATCH --mem=5000
 #SBATCH --gres=gpu:pascal:1
 
-#test
-
 
 
 module use /opt/insy/modulefiles
