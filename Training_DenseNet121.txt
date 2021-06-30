@@ -1,0 +1,41 @@
+Model 3 : DenseNet121 
+batch size = 60 
+learning rate = 0.0001 
+num_epochs = 100
+Epoch 1 | Training Loss: 1.3125785628318787 | Validation Loss: 1.2652158622741698 | Training Accuracy: 18.904998779296875 | Validation Accuracy: 22.000001907348633
+Epoch 2 | Training Loss: 1.217584375190735 | Validation Loss: 1.1822162170410155 | Training Accuracy: 22.450000762939453 | Validation Accuracy: 25.10000228881836
+Epoch 3 | Training Loss: 1.1310164568901062 | Validation Loss: 1.1092787590026856 | Training Accuracy: 26.405000686645508 | Validation Accuracy: 29.30000114440918
+Epoch 4 | Training Loss: 1.0531109552383422 | Validation Loss: 1.0442733764648438 | Training Accuracy: 30.024999618530273 | Validation Accuracy: 31.200000762939453
+Epoch 5 | Training Loss: 0.9825433018684387 | Validation Loss: 0.9805122718811036 | Training Accuracy: 32.880001068115234 | Validation Accuracy: 33.20000076293945
+Epoch 6 | Training Loss: 0.9165435228347778 | Validation Loss: 0.9204048118591308 | Training Accuracy: 36.07500076293945 | Validation Accuracy: 35.900001525878906
+Epoch 7 | Training Loss: 0.8552699359416962 | Validation Loss: 0.8630578079223633 | Training Accuracy: 39.8849983215332 | Validation Accuracy: 40.20000076293945
+Epoch 8 | Training Loss: 0.798202603816986 | Validation Loss: 0.8105246391296387 | Training Accuracy: 44.59000015258789 | Validation Accuracy: 43.500003814697266
+Epoch 9 | Training Loss: 0.7455642415523529 | Validation Loss: 0.7627263431549072 | Training Accuracy: 49.904998779296875 | Validation Accuracy: 49.20000076293945
+Epoch 10 | Training Loss: 0.6962375231742859 | Validation Loss: 0.7202610626220703 | Training Accuracy: 55.8699951171875 | Validation Accuracy: 54.30000305175781
+Epoch 11 | Training Loss: 0.6515928850650787 | Validation Loss: 0.6771276988983155 | Training Accuracy: 61.68999481201172 | Validation Accuracy: 60.60000228881836
+Epoch 12 | Training Loss: 0.6099291767120362 | Validation Loss: 0.641649040222168 | Training Accuracy: 67.73999786376953 | Validation Accuracy: 64.40000915527344
+Epoch 13 | Training Loss: 0.5714841684341431 | Validation Loss: 0.6084094200134277 | Training Accuracy: 72.99500274658203 | Validation Accuracy: 68.0
+Epoch 14 | Training Loss: 0.5363568476200103 | Validation Loss: 0.5782872962951661 | Training Accuracy: 77.11000061035156 | Validation Accuracy: 70.80000305175781
+Epoch 15 | Training Loss: 0.5036804366827011 | Validation Loss: 0.5500284938812255 | Training Accuracy: 80.53999328613281 | Validation Accuracy: 74.70000457763672
+Epoch 16 | Training Loss: 0.4736152163982391 | Validation Loss: 0.5258004245758057 | Training Accuracy: 83.36000061035156 | Validation Accuracy: 76.30000305175781
+Epoch 17 | Training Loss: 0.4456089059829712 | Validation Loss: 0.5027737445831298 | Training Accuracy: 85.55999755859375 | Validation Accuracy: 77.30000305175781
+Epoch 18 | Training Loss: 0.41962820799350736 | Validation Loss: 0.4815265407562256 | Training Accuracy: 87.07999420166016 | Validation Accuracy: 78.80000305175781
+Epoch 19 | Training Loss: 0.3957160055875778 | Validation Loss: 0.46713857269287107 | Training Accuracy: 88.33999633789062 | Validation Accuracy: 79.4000015258789
+Epoch 20 | Training Loss: 0.37265204458236695 | Validation Loss: 0.4530963592529297 | Training Accuracy: 89.37000274658203 | Validation Accuracy: 80.30000305175781
+Epoch 21 | Training Loss: 0.3512203244447708 | Validation Loss: 0.43366852378845216 | Training Accuracy: 90.19499969482422 | Validation Accuracy: 80.70000457763672
+Epoch 22 | Training Loss: 0.331010418510437 | Validation Loss: 0.42947537803649904 | Training Accuracy: 91.25 | Validation Accuracy: 80.20000457763672
+Epoch 23 | Training Loss: 0.31206835103034974 | Validation Loss: 0.4110231704711914 | Training Accuracy: 91.80500030517578 | Validation Accuracy: 82.40000915527344
+Epoch 24 | Training Loss: 0.2939402182340622 | Validation Loss: 0.4082367343902588 | Training Accuracy: 92.49500274658203 | Validation Accuracy: 81.50000762939453
+Epoch 25 | Training Loss: 0.2766049783706665 | Validation Loss: 0.40052633476257327 | Training Accuracy: 93.17500305175781 | Validation Accuracy: 82.40000915527344
+Epoch 26 | Training Loss: 0.260482228064537 | Validation Loss: 0.3890691232681274 | Training Accuracy: 93.72999572753906 | Validation Accuracy: 82.30000305175781
+Epoch 27 | Training Loss: 0.24501501092910766 | Validation Loss: 0.3854587726593018 | Training Accuracy: 94.18999481201172 | Validation Accuracy: 82.00000762939453
+Epoch 28 | Training Loss: 0.22978510003089905 | Validation Loss: 0.37973412418365476 | Training Accuracy: 94.62999725341797 | Validation Accuracy: 82.30000305175781
+Epoch 29 | Training Loss: 0.21533479356765747 | Validation Loss: 0.3774529218673706 | Training Accuracy: 95.26000213623047 | Validation Accuracy: 82.20000457763672
+Epoch 30 | Training Loss: 0.20218371748924255 | Validation Loss: 0.37183342361450195 | Training Accuracy: 95.6449966430664 | Validation Accuracy: 83.00000762939453
+Epoch 31 | Training Loss: 0.18915236928462983 | Validation Loss: 0.3704627857208252 | Training Accuracy: 95.97000122070312 | Validation Accuracy: 82.30000305175781
+Epoch 32 | Training Loss: 0.17661599915027618 | Validation Loss: 0.3695805492401123 | Training Accuracy: 96.58499908447266 | Validation Accuracy: 82.20000457763672
+Epoch 33 | Training Loss: 0.16503810994625093 | Validation Loss: 0.3701380548477173 | Training Accuracy: 96.94000244140625 | Validation Accuracy: 82.80000305175781
+Epoch 34 | Training Loss: 0.15320153830051422 | Validation Loss: 0.3728569564819336 | Training Accuracy: 97.26499938964844 | Validation Accuracy: 82.70000457763672
+Epoch 35 | Training Loss: 0.14258074444532395 | Validation Loss: 0.3745618047714233 | Training Accuracy: 97.61000061035156 | Validation Accuracy: 82.90000915527344
+Epoch 36 | Training Loss: 0.13188640496730805 | Validation Loss: 0.3792131938934326 | Training Accuracy: 97.9949951171875 | Validation Accuracy: 82.60000610351562
+Epoch 37 | Training Loss: 0.12196143001317977 | Validation Loss: 0.38093391036987306 | Training Accuracy: 98.25999450683594 | Validation Accuracy: 82.00000762939453

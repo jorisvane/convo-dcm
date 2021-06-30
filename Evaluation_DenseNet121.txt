@@ -1,0 +1,9 @@
+Model 3 : DenseNet121 
+batch size = 60 
+learning rate = 0.0001 
+num_epochs = 100
+ Parameters: [ 0.39104682 -0.55186258] 
+Ratio: 1.411244252472376 
+Log loss: -356.23027581829206 
+Cross entropy: 0.35623027581829203 
+Rho: 0.48606834766244233
