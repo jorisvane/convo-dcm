@@ -1,9 +1,0 @@
-Model 4 : Inceptionv3 
-batch size = 60 
-learning rate = 0.0001 
-num_epochs = 100
- Parameters: [ 0.31081062 -0.3791631 ] 
-Ratio: 1.21991679130901 
-Log loss: -414.20380422560515 
-Cross entropy: 0.41420380422560515 
-Rho: 0.4024302257263763
