@@ -74,7 +74,7 @@ model = NN(my_pretrained_model=pretrained).to(device)
 # NAME MODEL VERSION
 ####################
 
-FILE = cwd + '/Inceptionv3.pth'
+FILE = cwd + '/DenseNet_last_layer.pth'
 
 torch.save(model.state_dict(), FILE)
 
@@ -82,13 +82,13 @@ torch.save(model.state_dict(), FILE)
 criterion = nn.BCELoss(reduction='sum')
 optimizer = optim.Adam(model.parameters(), lr=learning_rate)
 
-file = open("Training_Inceptionv3.txt", "w")
+file = open("Training_DenseNet_last_layer.txt", "w")
 
 ######################
 # HYPERPARAMETERS TEXT
 ######################
 
-file.write('Model 4 : Inceptionv3 \nbatch size = 60 \nlearning rate = 0.0001 \nnum_epochs = 100\n')
+file.write('Model 3 : DenseNet121 \nbatch size = 60 \nlearning rate = 0.0001 \nnum_epochs = 100\n')
 
 training_acc = []
 validation_acc = []
@@ -232,8 +232,8 @@ fig.tight_layout(pad=3.0)
 # MODEL TYPE AND HYPERPARAMETERS
 #################################
 
-fig.suptitle('Model 4 Inceptionv3 | batchsize : 60 | learning rate : 0.0001')
-plt.savefig('Training_Inceptionv3.png')
+fig.suptitle('Model 3 DenseNet121 | batchsize : 60 | learning rate : 0.0001')
+plt.savefig('Training_DenseNet_last_layer.png')
 
 
 # Loading and evaluating model
@@ -282,14 +282,14 @@ delta_cost_eval = np.array(delta_cost_eval)
 delta_rating_eval = np.array(delta_rating_eval)
 prob_eval = np.array(prob_eval)
 
-name = 'Model 4 : Inceptionv3 : ratio'
+name = 'Model 3 : DenseNet121 : ratio'
 
 ratio, params = function_eval(delta_cost_eval, delta_rating_eval, prob_eval, name)
 LL = -log_loss(y_label_eval, prob_eval, normalize=False)
 cross_entropy = -LL/len(y_label_eval)
 rho_square = 1-(LL/(len(y_label_eval)* np.log(0.5)))
 
-file = open("Evaluation_Inceptionv3.txt", "w")
+file = open("Evaluation_DenseNet_last_layer3.txt", "w")
 
 print(f'Parameters: {params}')
 print(f'Ratio: {ratio}')
@@ -297,7 +297,7 @@ print(f'Log loss: {LL}')
 print(f'Cross entropy: {cross_entropy}')
 print(f'Rho: {rho_square}')
 
-file.write(f'Model 4 : Inceptionv3 \nbatch size = 60 \nlearning rate = 0.0001 \nnum_epochs = 100\n Parameters: {params} \nRatio: {ratio} \nLog loss: {LL} \nCross entropy: {cross_entropy} \nRho: {rho_square}')
+file.write(f'Model 3 : DenseNet121 \nbatch size = 60 \nlearning rate = 0.0001 \nnum_epochs = 100\n Parameters: {params} \nRatio: {ratio} \nLog loss: {LL} \nCross entropy: {cross_entropy} \nRho: {rho_square}')
 
 file.close()
 

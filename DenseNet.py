@@ -21,6 +21,12 @@ pretrained.fc = nn.Identity()
 for parameter in pretrained.parameters():
     parameter.requires_grad = False
 
+for name, parameter in pretrained.named_parameters():
+    if 'denseblock4' in name:
+        parameter.requires_grad = True
+    if 'norm5' in name:
+        parameter.requires_grad = True
+
 class NN(nn.Module):
 
     def __init__(self, my_pretrained_model):

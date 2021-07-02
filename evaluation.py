@@ -72,7 +72,7 @@ def function_eval(x_data,y_data,z_data,name):
     ax.set_ylabel('delta rating', fontweight ='bold') 
     ax.set_zlabel('probability', fontweight ='bold')
         
-    plt.savefig('Evaluation_Inceptionv3.png', dpi=300)
+    plt.savefig('Evaluation_DenseNet_last_layer.png', dpi=300)
 
     # show plot
     plt.show()

@@ -1,10 +1,10 @@
 #!/bin/sh
 #SBATCH --partition=general
 #SBATCH --qos=short
-#SBATCH --time=3:00:00
+#SBATCH --time=4:00:00
 #SBATCH --ntasks=1
 #SBATCH --cpus-per-task=8
-#SBATCH --mem=10000
+#SBATCH --mem=5000
 #SBATCH --gres=gpu:pascal:1
 
 module use /opt/insy/modulefiles
