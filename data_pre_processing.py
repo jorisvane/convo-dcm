@@ -56,6 +56,8 @@ print(df2)
 import matplotlib.pyplot as plt
 bins = [0,1,2,3,4,5,6,7,8,9,10]
 plt.hist(df2['avg rating'], bins=bins, edgecolor="k")
+plt.ylabel('Number of images')
+plt.xlabel('Average rating')
 plt.show()
 
 import pandas as pd
